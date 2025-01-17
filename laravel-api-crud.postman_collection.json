@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "78aad2df-3f68-440a-9017-ae2370dd137a",
+		"_postman_id": "1bbff057-88ee-4083-9373-aa15ca24b213",
 		"name": "laravel-api-crud",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "25791242"
@@ -14,7 +14,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "6|vnLpmhII2oJi3uhxwqgAi5Ek20fArE7cWFsGGY4jcc308007",
+							"value": "2|RQennLto7wSAzsOAjWJFvEeWLfoDQDTx08hhxoJJ1da9ea91",
 							"type": "string"
 						}
 					]
@@ -29,7 +29,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Article 2\",\r\n    \"body\": \"This is body 2\"\r\n}",
+					"raw": "{\r\n    \"title\": \"Article 2\",\r\n    \"content\": \"This is body 2\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -37,16 +37,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/articles",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/posts",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"v1",
-						"articles"
+						"posts"
 					]
 				}
 			},
@@ -60,7 +60,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "2|ejLI6yhfA8mBJEayM3mRBARKhdcodHvJODSE9CgA3bf78b0b",
+							"value": "2|RQennLto7wSAzsOAjWJFvEeWLfoDQDTx08hhxoJJ1da9ea91",
 							"type": "string"
 						}
 					]
@@ -75,7 +75,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Laravel API\"\r\n}",
+					"raw": "{\r\n    \"title\": \"Editing first post\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -83,16 +83,16 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/v1/articles/1",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/posts/1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"v1",
-						"articles",
+						"posts",
 						"1"
 					]
 				}
@@ -121,16 +121,16 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/articles",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/posts",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"v1",
-						"articles"
+						"posts"
 					]
 				}
 			},
@@ -151,17 +151,17 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/articles/6",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/posts/1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"v1",
-						"articles",
-						"6"
+						"posts",
+						"1"
 					]
 				}
 			},
@@ -175,7 +175,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "6|vnLpmhII2oJi3uhxwqgAi5Ek20fArE7cWFsGGY4jcc308007",
+							"value": "2|RQennLto7wSAzsOAjWJFvEeWLfoDQDTx08hhxoJJ1da9ea91",
 							"type": "string"
 						}
 					]
@@ -189,17 +189,17 @@
 					}
 				],
 				"url": {
-					"raw": "http://localhost:8000/api/v1/articles/4",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/posts/1",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"v1",
-						"articles",
-						"4"
+						"posts",
+						"1"
 					]
 				}
 			},
@@ -218,7 +218,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"email\": \"shakhawat@example.com\",\r\n    \"password\": \"password\"\r\n}",
+					"raw": "{\r\n    \"email\": \"test@example.com\",\r\n    \"password\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -226,12 +226,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/login",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/login",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"login"
@@ -253,7 +254,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Shakhawat Mollah\",\r\n    \"email\": \"shakhawat@example.com\",\r\n    \"password\": \"password\",\r\n    \"password_confirmation\": \"password\",\r\n    \"role\": 1\r\n}",
+					"raw": "{\r\n    \"name\": \"James Arua\",\r\n    \"email\": \"test@example.com\",\r\n    \"password\": \"password\",\r\n    \"password_confirmation\": \"password\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -261,12 +262,13 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8000/api/register",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/register",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"register"
@@ -326,15 +328,16 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/user",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/activity-logs",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"user"
+						"activity-logs"
 					]
 				}
 			},
@@ -343,18 +346,28 @@
 		{
 			"name": "Get My Posts",
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|RQennLto7wSAzsOAjWJFvEeWLfoDQDTx08hhxoJJ1da9ea91",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8000/api/postsb/my-posts",
-					"protocol": "http",
+					"raw": "https://crud.yoursweetnews.com/api/my-posts",
+					"protocol": "https",
 					"host": [
-						"localhost"
+						"crud",
+						"yoursweetnews",
+						"com"
 					],
-					"port": "8000",
 					"path": [
 						"api",
-						"postsb",
 						"my-posts"
 					]
 				}
