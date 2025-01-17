@@ -22,7 +22,8 @@ class PostUpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'nullable|max:225',
+            'content' => 'nullable',
         ];
     }
 }
