@@ -16,14 +16,15 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::prefix('v1/')->middleware(['auth:sanctum','throttle:60,1:ip'])->group(function () {
+Route::middleware(['auth:sanctum','throttle:60,1:ip'])->group(function () {
     Route::apiResource('posts', PostController::class, [
         'except' => ['index', 'show'],
     ]);
+    Route::get('/my-posts', [PostController::class, 'getUserPosts']);
 });
 
-Route::get('/v1/posts', [PostController::class, 'index']);
-Route::get('/v1/articles/{id}', [PostController::class, 'show']);
+Route::get('/posts', [PostController::class, 'index']);
+Route::get('/posts/{id}', [PostController::class, 'show']);
 
 Route::get('/activity-logs', function () {
     return ActivityLog::get();
