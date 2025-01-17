@@ -24,7 +24,7 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $token = auth()->login($user);
+        $token = $user->createToken($user->email)->plainTextToken;
 
         return response()->json([
             'message' => 'User successfully registered',
@@ -36,7 +36,7 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email'|'exists:users',
+            'email' => 'required|email|exists:users,email',
             'password' => 'required|string|min:8',
         ]);
 
@@ -44,9 +44,14 @@ class AuthController extends Controller
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
+
+        $user = auth()->user();
+
+        $plainTextToken = $user->createToken($user->email)->plainTextToken;
+
         return response()->json([
             'message' => 'Login successful',
-            'token' => $token
+            'token' => $plainTextToken
         ]);
     }
 

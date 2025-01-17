@@ -16,7 +16,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::middleware(['auth:sanctum','throttle:60,1:ip'])->group(function () {
+Route::middleware(['auth:sanctum','throttle:60,1'])->group(function () {
     Route::apiResource('posts', PostController::class, [
         'except' => ['index', 'show'],
     ]);
