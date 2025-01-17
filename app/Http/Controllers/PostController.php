@@ -8,9 +8,19 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
+use App\Models\ActivityLog;
 
 class PostController extends Controller
 {
+
+    private function logActivity($action)
+    {
+        ActivityLog::create([
+            'user_id' => auth()->id(),
+            'action' => $action,
+            'performed_at' => now(),
+        ]);
+    }
 
     public static function middleware(): array
     {
@@ -42,6 +52,8 @@ class PostController extends Controller
     public function store(PostStoreRequest $request)
     {
         $post = $request->user()->posts()->create($request->validated());
+
+        $this->logActivity(auth()->user()->name . ' created a new post: ' . $post->title);
 
         return response()->json([
             'message' => 'Post created successfully.',
@@ -80,6 +92,7 @@ class PostController extends Controller
         }
 
         $post->update($postUpdateRequest->validated());
+        $this->logActivity(auth()->user()->name . ' update a post: ' . $post->title);
 
         return response()->json([
             'message' => 'Post updated successfully',
@@ -101,6 +114,8 @@ class PostController extends Controller
         }
 
         $post->delete();
+
+        $this->logActivity(auth()->user()->name . ' Deleted a post: ' . $post->title);
 
         return response()->json([
             'message' => 'Post deleted successfully'

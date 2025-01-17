@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AuthController;
+use App\Models\ActivityLog;
 
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
@@ -15,7 +16,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::prefix('v1/')->middleware('auth:sanctum')->group(function () {
+Route::prefix('v1/')->middleware(['auth:sanctum','throttle:60,1:ip'])->group(function () {
     Route::apiResource('posts', PostController::class, [
         'except' => ['index', 'show'],
     ]);
@@ -23,3 +24,7 @@ Route::prefix('v1/')->middleware('auth:sanctum')->group(function () {
 
 Route::get('/v1/posts', [PostController::class, 'index']);
 Route::get('/v1/articles/{id}', [PostController::class, 'show']);
+
+Route::get('/activity-logs', function () {
+    return ActivityLog::get();
+});
