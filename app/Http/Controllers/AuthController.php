@@ -2,65 +2,63 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAuthorRequest;
+use App\Models\Author;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
-
-    // User Registration
-    public function register(Request $request)
+    public function register(StoreAuthorRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+        $validated = $request->validated();
+        $author = Author::create([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'date_of_birth' => $validated['date_of_birth'],
+            'password' => Hash::make($validated['password']),
         ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
 
-        $token = $user->createToken($user->email)->plainTextToken;
+        $token = $author->createToken($author->email)->plainTextToken;
 
         return response()->json([
-            'message' => 'User successfully registered',
-            'token' => $token
+            'message' => 'Author successfully registered',
+            'author' => $author,
+            'token' => $token,
         ], 201);
     }
 
-    // User Login
+
     public function login(Request $request)
     {
         $credentials = $request->validate([
-            'email' => 'required|email|exists:users,email',
+            'email' => 'required|email|exists:authors,email',
             'password' => 'required|string|min:8',
         ]);
 
-        if (!$token = auth()->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+        $author = Author::where('email', $credentials['email'])->first();
+
+        if (!$author || !Hash::check($credentials['password'], $author->password)) {
+            return response()->json(['error' => 'Invalid credentials'], 401);
         }
 
-
-        $user = auth()->user();
-
-        $plainTextToken = $user->createToken($user->email)->plainTextToken;
+        $token = $author->createToken($author->email)->plainTextToken;
 
         return response()->json([
             'message' => 'Login successful',
-            'token' => $plainTextToken
+            'author' => $author,
+            'token' => $token,
         ]);
     }
+
 
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
 
         return response()->json([
-            'message' => 'Successfully logged out'
+            'message' => 'Successfully logged out',
         ]);
     }
 }

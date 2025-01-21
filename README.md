@@ -1,18 +1,15 @@
-# LARAVEL/PHP API CRUD ASSESSMENTS
+# LARAVEL BOOK API
 
 ### Features
 
-- **Authentication**: User registration, login, and logout.
-- **Laravel Sanctum**: API token-based authentication.
-- **Policy**: Authorization using policies.
-- **RESTful API**: Create, read, update, and delete posts.
+- **RESTful API**: Create, read, update, and delete books, register as author, fetch authors with their books.
 
 ### Installation
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Sirjamesarua/laravel-crud-api.git
-   cd laravel-api-crud
+   git clone https://github.com/Sirjamesarua/Book-API.git
+   cd Book-api
    ```
 
 **Setting the Application**
@@ -42,20 +39,17 @@
 ### API Endpoints
 
 - **Authentication**
-    - `POST /api/register` – Register a new user.
-    - `POST /api/login` – Log in a user and retrieve a token.
-    - `POST /api/logout` – Log out the authenticated user.
+    - `POST /api/register` – Register a new author.
+    - `POST /api/login` – Log in a author and retrieve a token.
+    - `POST /api/logout` – Log out the authenticated author.
 
-- **Posts**
-    - `GET /api/posts` – List all posts.
-    - `GET /api/my-posts` – List all owned posts.
-    - `GET /api/posts/{id}` – Show a single post.
-    - `POST /api/posts` – Create a new post.
-    - `PUT /api/posts/{id}` – Update an post.
-    - `DELETE /api/posts/{id}` – Delete an post.
+- **Books**
+    - `GET /api/books` – List all books.
+    - `GET /api/books/{id}` – Fetch book details with author information.
+    - `POST /api/books` – Create a new book.
+    - `PUT /api/books/{id}` – Update a book.
+    - `DELETE /api/books/{id}` – Delete a book.
 
-- **Activities Logs**
-    - `GET /api/activity-logs` – List all activities.
   
 ### Support
 
