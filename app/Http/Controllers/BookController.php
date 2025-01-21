@@ -28,11 +28,11 @@ class BookController extends Controller
 
     public function update(Book $book, updateBookRequest $request)
     {
-        // if (auth()->user()->id !== $book->author_id) {
-        //     return response()->json(['error' => 'Unauthorized'], 403);
-        // }
+        if (auth()->user()->id !== $book->author_id) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
 
-        // $book->update($request->validated());
+        $book->update($request->validated());
         return response()->json($book);
     }
 
